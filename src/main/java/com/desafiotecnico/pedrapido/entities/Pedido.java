@@ -3,7 +3,10 @@ package com.desafiotecnico.pedrapido.entities;
 import jakarta.persistence.*;
 
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_pedido")
@@ -12,6 +15,7 @@ public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(columnDefinition = "TEXT")
     private String descricao;
     @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private Instant data;
@@ -20,6 +24,9 @@ public class Pedido {
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
+
+    @OneToMany(mappedBy = "id.pedido")
+    private Set<ItemPedido> items = new HashSet<>();
 
 
     public Pedido() {
@@ -71,6 +78,14 @@ public class Pedido {
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
+    }
+
+    public Set<ItemPedido> getItems() {
+        return items;
+    }
+
+    public List<Produto> getHamburguers(){
+        return items.stream().map(x -> x.getProduto()).toList();
     }
 
     @Override
