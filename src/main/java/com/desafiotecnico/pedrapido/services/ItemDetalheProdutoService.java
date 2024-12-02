@@ -27,4 +27,21 @@ public class ItemDetalheProdutoService {
         return result.map(x -> new ItemDetalheProdutoDTO(x));
     }
 
+    public ItemDetalheProdutoDTO insert(ItemDetalheProdutoDTO dto){
+        ItemDetalheProduto entity = new ItemDetalheProduto();
+        copyDtoToEntity(dto,entity);
+        entity = repositoy.save(entity);
+        return new ItemDetalheProdutoDTO(entity);
+    }
+
+    @Transactional
+    private void copyDtoToEntity(ItemDetalheProdutoDTO dto, ItemDetalheProduto entity) {
+        entity.setDescricao(dto.getDescricao());
+        entity.setPreco(dto.getPreco());
+        entity.setAdicional(dto.getAdicional());
+        entity.setPossueAcucar(dto.getPossueAcucar());
+    }
+
+
+
 }
