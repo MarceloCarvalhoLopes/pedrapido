@@ -3,6 +3,8 @@ package com.desafiotecnico.pedrapido.services;
 import com.desafiotecnico.pedrapido.dto.ItemDetalheProdutoDTO;
 import com.desafiotecnico.pedrapido.entities.ItemDetalheProduto;
 import com.desafiotecnico.pedrapido.repositories.ItemDetalheProdutoRepositoy;
+import com.desafiotecnico.pedrapido.services.exceptions.ResourceNotFoundException;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -45,14 +47,24 @@ public class ItemDetalheProdutoService {
 
     @Transactional
     public ItemDetalheProdutoDTO update(Long id, ItemDetalheProdutoDTO dto) {
-        ItemDetalheProduto entity = repositoy.getReferenceById(id);
-        copyDtoToEntity(dto, entity);
-        entity = repositoy.save(entity);
-        return new ItemDetalheProdutoDTO(entity);
+
+        try{
+            ItemDetalheProduto entity = repositoy.getReferenceById(id);
+            copyDtoToEntity(dto, entity);
+            entity = repositoy.save(entity);
+            return new ItemDetalheProdutoDTO(entity);
+
+        }catch (EntityNotFoundException e){
+            throw new ResourceNotFoundException("Recurso não encontrado");
+        }
+
     }
 
     @Transactional(propagation = Propagation.SUPPORTS)
     public void delete(Long id){
+        if (!repositoy.existsById(id)){
+            throw new ResourceNotFoundException("Recurso não encontrado");
+        }
         repositoy.deleteById(id);
     }
 
