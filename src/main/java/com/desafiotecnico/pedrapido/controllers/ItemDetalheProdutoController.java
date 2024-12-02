@@ -41,8 +41,13 @@ public class ItemDetalheProdutoController {
         return ResponseEntity.created(uri).body(dto);
     }
 
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<ItemDetalheProdutoDTO> update(@PathVariable Long id, @Valid @RequestBody ItemDetalheProdutoDTO dto){
+        dto  = service.update(id,dto);
+        return ResponseEntity.ok(dto);
+    }
 
-    
+
 
 
 

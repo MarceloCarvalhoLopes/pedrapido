@@ -16,20 +16,20 @@ public class ItemDetalheProdutoService {
     private ItemDetalheProdutoRepositoy repositoy;
 
     @Transactional(readOnly = true)
-    public ItemDetalheProdutoDTO findById(Long id){
+    public ItemDetalheProdutoDTO findById(Long id) {
         ItemDetalheProduto item = repositoy.getReferenceById(id);
         return new ItemDetalheProdutoDTO(item);
     }
 
     @Transactional(readOnly = true)
-    public Page<ItemDetalheProdutoDTO> findAll(String descricao, Pageable pageable){
+    public Page<ItemDetalheProdutoDTO> findAll(String descricao, Pageable pageable) {
         Page<ItemDetalheProduto> result = repositoy.searchByName(descricao, pageable);
         return result.map(x -> new ItemDetalheProdutoDTO(x));
     }
 
-    public ItemDetalheProdutoDTO insert(ItemDetalheProdutoDTO dto){
+    public ItemDetalheProdutoDTO insert(ItemDetalheProdutoDTO dto) {
         ItemDetalheProduto entity = new ItemDetalheProduto();
-        copyDtoToEntity(dto,entity);
+        copyDtoToEntity(dto, entity);
         entity = repositoy.save(entity);
         return new ItemDetalheProdutoDTO(entity);
     }
@@ -42,6 +42,11 @@ public class ItemDetalheProdutoService {
         entity.setPossueAcucar(dto.getPossueAcucar());
     }
 
-
-
+    @Transactional
+    public ItemDetalheProdutoDTO update(Long id, ItemDetalheProdutoDTO dto) {
+        ItemDetalheProduto entity = repositoy.getReferenceById(id);
+        copyDtoToEntity(dto, entity);
+        entity = repositoy.save(entity);
+        return new ItemDetalheProdutoDTO(entity);
+    }
 }
