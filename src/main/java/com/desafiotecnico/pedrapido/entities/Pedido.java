@@ -17,8 +17,8 @@ public class Pedido {
     private Long id;
     @Column(columnDefinition = "TEXT")
     private String descricao;
-    @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private Instant data;
+    @Enumerated(EnumType.STRING)
     private StatusPedido status;
 
     @ManyToOne

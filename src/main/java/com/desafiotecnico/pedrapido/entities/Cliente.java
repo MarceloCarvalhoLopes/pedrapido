@@ -19,6 +19,7 @@ public class Cliente {
     private String email;
     private String telefone;
     private LocalDate dataNascimento;
+    private String endereco;
 
     @OneToMany(mappedBy = "cliente")
     private List<Pedido> pedidos = new ArrayList<>();
@@ -26,12 +27,13 @@ public class Cliente {
     public Cliente() {
     }
 
-    public Cliente(Long id, String nome, String email, String telefone, LocalDate dataNascimento) {
+    public Cliente(Long id, String nome, String email, String telefone, LocalDate dataNascimento, String endereco) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.telefone = telefone;
         this.dataNascimento = dataNascimento;
+        this.endereco = endereco;
     }
 
     public Long getId() {
@@ -77,6 +79,16 @@ public class Cliente {
     public List<Pedido> getPedidos() {
         return pedidos;
     }
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+
+
 
     @Override
     public boolean equals(Object o) {
