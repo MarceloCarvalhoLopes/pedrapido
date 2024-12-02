@@ -74,6 +74,10 @@ public class Produto {
         return detalhes;
     }
 
+    public Set<Categoria> getCategorias() {
+        return categorias;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
