@@ -1,6 +1,7 @@
 package com.desafiotecnico.pedrapido.dto;
 
 import com.desafiotecnico.pedrapido.entities.Categoria;
+import com.desafiotecnico.pedrapido.entities.DetalheProduto;
 import com.desafiotecnico.pedrapido.entities.Produto;
 
 import java.util.ArrayList;
@@ -13,6 +14,8 @@ public class ProdutoDTO {
     private Double preco;
 
     private List<CategoriaDTO> categorias = new ArrayList<>();
+
+    private List<DetalheProdutoDTO> detalhesProdutoDTOS = new ArrayList<>();
 
     public ProdutoDTO() {
     }
@@ -28,9 +31,14 @@ public class ProdutoDTO {
         descricao = entity.getDescricao();
         preco = entity.getPreco();
 
-        for(Categoria categoria: entity.getCategorias()){
+        for (Categoria categoria : entity.getCategorias()) {
             categorias.add(new CategoriaDTO(categoria));
         }
+
+        for (DetalheProduto detalheProduto : entity.getDetalhes()) {
+            detalhesProdutoDTOS.add(new DetalheProdutoDTO(detalheProduto));
+        }
+
     }
 
     public Long getId() {
@@ -47,5 +55,9 @@ public class ProdutoDTO {
 
     public List<CategoriaDTO> getCategorias() {
         return categorias;
+    }
+
+    public List<DetalheProdutoDTO> getDetalhesProdutoDTOS() {
+        return detalhesProdutoDTOS;
     }
 }

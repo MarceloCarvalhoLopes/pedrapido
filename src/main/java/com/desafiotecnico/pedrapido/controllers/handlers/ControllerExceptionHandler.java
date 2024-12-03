@@ -1,6 +1,7 @@
 package com.desafiotecnico.pedrapido.controllers.handlers;
 
 import com.desafiotecnico.pedrapido.dto.CustomError;
+import com.desafiotecnico.pedrapido.services.exceptions.DatabaseException;
 import com.desafiotecnico.pedrapido.services.exceptions.ResourceNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
@@ -19,5 +20,11 @@ public class ControllerExceptionHandler {
         return ResponseEntity.status(status).body(err);
     }
 
+    @ExceptionHandler(DatabaseException.class)
+    public ResponseEntity<CustomError> database(DatabaseException e, HttpServletRequest request) {
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+        CustomError err = new CustomError(Instant.now(),status.value(),e.getMessage(),request.getRequestURI());
+        return ResponseEntity.status(status).body(err);
+    }
 
 }

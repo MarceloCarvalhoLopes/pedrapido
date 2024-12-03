@@ -2,7 +2,9 @@ package com.desafiotecnico.pedrapido.entities;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_categoria")
@@ -13,6 +15,8 @@ public class Categoria{
     private Long id;
     private String descricao;
 
+    @ManyToMany(mappedBy = "categorias")
+    private Set<Produto> produtos = new HashSet<>();
     public Categoria() {
     }
 
@@ -29,12 +33,16 @@ public class Categoria{
         this.id = id;
     }
 
-    public String getdescricao() {
+    public String getDescricao() {
         return descricao;
     }
 
-    public void setdescricao(String descricao) {
+    public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public Set<Produto> getProdutos() {
+        return produtos;
     }
 
     @Override
