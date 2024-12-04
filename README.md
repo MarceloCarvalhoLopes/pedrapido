@@ -15,6 +15,6 @@
 <p>Importar a Collection -> Desafio Técnico, que está em anexo</p>
 
  <p>
-    <img src="pedrapido/assets/allendpoints.png">    
+    <img src="assets/allendpoints.png">    
   </p>
 
