@@ -20,8 +20,11 @@ public class ItemDetalheProdutoService {
 
     @Transactional(readOnly = true)
     public ItemDetalheProdutoDTO findById(Long id) {
-        ItemDetalheProduto item = repositoy.getReferenceById(id);
+        ItemDetalheProduto item = repositoy.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException("Recurso não encontrado"));
+
         return new ItemDetalheProdutoDTO(item);
+
     }
 
     @Transactional(readOnly = true)
