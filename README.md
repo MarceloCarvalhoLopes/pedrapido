@@ -8,7 +8,7 @@
 
 ### Executando a API
 
-### Clone o repositório
+#### Clone o repositório
 <p>git clone https://github.com/MarceloCarvalhoLopes/pedrapido.git</p>
 
 <p>Importar a aplicação na IDE de prefência e executar.</p>
