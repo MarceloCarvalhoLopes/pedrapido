@@ -84,7 +84,7 @@ public class Pedido {
         return items;
     }
 
-    public List<Produto> getHamburguers(){
+    public List<Produto> getProdutos(){
         return items.stream().map(x -> x.getProduto()).toList();
     }
 
