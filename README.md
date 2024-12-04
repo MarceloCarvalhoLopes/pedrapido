@@ -12,9 +12,11 @@
 <p>git clone https://github.com/MarceloCarvalhoLopes/pedrapido.git</p>
 
 <p>Importar a aplicação na IDE de prefência e executar</p>
-<p>Importar a Collection -> Desafio Técnico, que está em anexo</p>
-
- <p>
-    <img src="assets/allendpoints.png">    
-  </p>
+<p>Importar a Collection -> Desafio Técnico, que está em projeto e testar os end-poinst disponíveis</p>
+<p>
+  <img src="assets/imagem_2024-12-03_235743234.png">    
+</p>
+<p>
+  <img src="assets/allendpoints.png">    
+</p>
 
